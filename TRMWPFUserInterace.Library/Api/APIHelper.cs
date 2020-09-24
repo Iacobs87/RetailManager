@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using System.Configuration;
-using TRMWPFUserInterface.Models;
+using TRMWPFUserInterace.Library.Models;
 
-namespace TRMWPFUserInterface.Helpers
+namespace TRMWPFUserInterace.Library.Api
 {
     public class APIHelper : IAPIHelper
     {

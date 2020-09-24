@@ -1,7 +1,8 @@
 ﻿using System.Threading.Tasks;
-using TRMWPFUserInterface.Models;
+using TRMWPFUserInterace.Library.Models;
 
-namespace TRMWPFUserInterface.Helpers
+
+namespace TRMWPFUserInterace.Library.Api
 {
     public interface IAPIHelper
     {

@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TRMWPFUserInterface.Helpers;
+using TRMWPFUserInterace.Library.Api;
+
 
 namespace TRMWPFUserInterface.ViewModels
 {
@@ -93,6 +95,9 @@ namespace TRMWPFUserInterface.ViewModels
             {
                 ErrorMessage = "";
                 var result = await _apiHelper.Authenticate(UserName, Password);
+
+                // Capture more info about the user
+
             }
             catch (Exception ex)
             {
