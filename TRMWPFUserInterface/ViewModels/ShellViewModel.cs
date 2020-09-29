@@ -12,18 +12,17 @@ namespace TRMWPFUserInterface.ViewModels
     {
        
         private IEventAggregator _events;
-        private SalesViewModel _salesVM;
-        private SimpleContainer _container;
+        private SalesViewModel _salesVM;       
 
-        public ShellViewModel( IEventAggregator events, SalesViewModel salesVM, SimpleContainer container)
+        public ShellViewModel( IEventAggregator events, SalesViewModel salesVM)
         {
             _events = events;
             _salesVM = salesVM;
-            _container = container;
+            
             
             _events.Subscribe(this);
             
-            ActivateItem(_container.GetInstance<LoginViewModel>());    
+            ActivateItem(IoC.Get<LoginViewModel>());    
             
         }
 
