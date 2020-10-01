@@ -6,7 +6,7 @@ begin
 
     select Id, ProductName, [Description], RetailPrice, QuantityInStock, IsTaxable
     from dbo.Product
-    order by ProductName
+    order by ProductName;
 
 end
 
