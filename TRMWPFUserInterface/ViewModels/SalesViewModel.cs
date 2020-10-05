@@ -71,6 +71,18 @@ namespace TRMWPFUserInterface.ViewModels
             }
         }
 
+        private async Task ResetSalesViewModel()
+        {
+            Cart = new BindingList<CartItemDisplayModel>();
+            // TODO - Add clearing the selected cart item if it does not do it itself
+            await LoadProducts();
+
+            NotifyOfPropertyChange(() => SubTotal);
+            NotifyOfPropertyChange(() => Tax);
+            NotifyOfPropertyChange(() => Total);
+            NotifyOfPropertyChange(() => CanCheckOut);
+        }
+
         private CartItemDisplayModel _selectedCartItem;
 
         public CartItemDisplayModel SelectedCartItem
@@ -83,7 +95,6 @@ namespace TRMWPFUserInterface.ViewModels
                 NotifyOfPropertyChange(() => CanRemoveFromCart);
             }
         }
-
 
         public BindingList<CartItemDisplayModel> Cart
         {
@@ -105,7 +116,6 @@ namespace TRMWPFUserInterface.ViewModels
                 NotifyOfPropertyChange(() => CanAddToCart);
             }
         }
-
 
         public string SubTotal
         {
@@ -164,7 +174,6 @@ namespace TRMWPFUserInterface.ViewModels
             }
         }
 
-
         public bool CanAddToCart
         {
             get
@@ -215,7 +224,7 @@ namespace TRMWPFUserInterface.ViewModels
                 bool output = false;
 
                 //Make sure something is selected
-                if (SelectedCartItem != null && SelectedCartItem?.Product.QuantityInStock > 0)
+                if (SelectedCartItem != null && SelectedCartItem?.QuantityInCart > 0)
                 {
                     output = true;
                 }
@@ -227,8 +236,6 @@ namespace TRMWPFUserInterface.ViewModels
 
         public void RemoveFromCart()
         {
-
-
             SelectedCartItem.Product.QuantityInStock += 1;
 
             if (SelectedCartItem.QuantityInCart > 1)
@@ -244,6 +251,7 @@ namespace TRMWPFUserInterface.ViewModels
             NotifyOfPropertyChange(() => Tax);
             NotifyOfPropertyChange(() => Total);
             NotifyOfPropertyChange(() => CanCheckOut);
+            NotifyOfPropertyChange(() => CanAddToCart);
         }
 
         public bool CanCheckOut
@@ -279,10 +287,8 @@ namespace TRMWPFUserInterface.ViewModels
             }
 
             await _saleEndpoint.PostSale(sale);
+
+            await ResetSalesViewModel();
         }
-
-        
-
-
     }
 }
