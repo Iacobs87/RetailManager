@@ -8,6 +8,7 @@ namespace TRMWPFUserInterace.Library.Api
     public interface IAPIHelper
     {
         HttpClient ApiClient { get; }
+        void LogOffUser();
 
         Task<AuthenticatedUser> Authenticate(string username, string password);
 
