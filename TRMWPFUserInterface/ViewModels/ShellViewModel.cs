@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using Caliburn.Micro;
 using TRMWPFUserInterace.Library.Api;
 using TRMWPFUserInterace.Library.Models;
@@ -48,6 +49,11 @@ namespace TRMWPFUserInterface.ViewModels
         public void ExitApplication()
         {
             TryClose();
+        }
+
+        public void UserManagement()
+        {
+            ActivateItem(IoC.Get<UserDisplayViewModel>());
         }
 
         public void LogOut()
